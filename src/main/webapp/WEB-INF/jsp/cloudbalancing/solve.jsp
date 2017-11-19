@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="org.optaplanner.webexamples.cloudbalancing.CloudBalancingWebAction" %>
+<%@ page import="opta.boot.cloudbalancing.CloudBalancingAction" %>
 <%
-  new CloudBalancingWebAction().solve(session);
+  new CloudBalancingAction().solve(session);
 %>
 <!DOCTYPE html>
 <html lang="en">

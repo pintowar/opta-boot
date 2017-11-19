@@ -7,7 +7,7 @@
 <%@ page import="org.optaplanner.examples.cloudbalancing.domain.CloudBalance" %>
 <%@ page import="org.optaplanner.examples.cloudbalancing.domain.CloudComputer" %>
 <%@ page import="org.optaplanner.examples.cloudbalancing.domain.CloudProcess" %>
-<%@ page import="org.optaplanner.webexamples.cloudbalancing.CloudBalancingSessionAttributeName" %>
+<%@ page import="opta.boot.cloudbalancing.CloudBalancingSessionAttributeName" %>
 
 <%
   CloudBalance solution = (CloudBalance) session.getAttribute(CloudBalancingSessionAttributeName.SHOWN_SOLUTION);
