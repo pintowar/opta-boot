@@ -48,19 +48,12 @@ public class CloudBalancingAction {
         final Solver<CloudBalance> solver = (Solver<CloudBalance>) session.getAttribute(CloudBalancingSessionAttributeName.SOLVER);
         final CloudBalance unsolvedSolution = (CloudBalance) session.getAttribute(CloudBalancingSessionAttributeName.SHOWN_SOLUTION);
 
-        solver.addEventListener(new SolverEventListener<CloudBalance>() {
-            @Override
-            public void bestSolutionChanged(BestSolutionChangedEvent<CloudBalance> event) {
-                CloudBalance bestSolution = event.getNewBestSolution();
-                session.setAttribute(CloudBalancingSessionAttributeName.SHOWN_SOLUTION, bestSolution);
-            }
+        solver.addEventListener(event -> {
+            CloudBalance bestSolution = event.getNewBestSolution();
+            session.setAttribute(CloudBalancingSessionAttributeName.SHOWN_SOLUTION, bestSolution);
         });
-        solvingExecutor.submit(new Runnable() {
-            @Override
-            public void run() {
-                solver.solve(unsolvedSolution);
-            }
-        });
+
+        solvingExecutor.submit(() -> solver.solve(unsolvedSolution));
     }
 
     public void terminateEarly(HttpSession session) {

@@ -96,7 +96,7 @@ public class VehicleRoutingSolverManager implements Serializable {
         }
         sessionSolverMap.put(sessionId, solver);
         final VehicleRoutingSolution solution = retrieveOrCreateSolution(sessionId);
-        executor.submit((Runnable) () -> {
+        executor.submit(() -> {
             VehicleRoutingSolution bestSolution = solver.solve(solution);
             synchronized (VehicleRoutingSolverManager.this) {
                 sessionSolutionMap.put(sessionId, bestSolution);
